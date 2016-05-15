@@ -1,0 +1,25 @@
+{
+  "name": "d3-bearings",
+  "version": "0.0.1",
+  "description": "D3 visualisation",
+  "main": "d3-bearings.js",
+  "dependencies": {
+    "d3": "^4.0.0-alpha.40"
+  },
+  "devDependencies": {
+    "qunitjs": "~1.14.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "./node_modules/bower/bin/bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cowlet/d3-bearings.git"
+  },
+  "author": "Victoria Catterson <vic@cowlet.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cowlet/d3-bearings/issues"
+  }
+}
