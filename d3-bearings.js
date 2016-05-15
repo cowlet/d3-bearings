@@ -50,6 +50,18 @@
         .attr("cx", function(d) { return xscale(d.bpfi); })
         .attr("cy", function(d) { return yscale(d.bpfo); })
         .attr("r", radius)
-        .style("fill", "rgba(0, 0, 0, 0.2)");
+        .style("fill", function(d) {
+          if (d.state === "early") {
+            return "rgba(0, 255, 0, 0.2)";
+          } else if (d.state === "normal") {
+            return "rgba(0, 0, 255, 0.2)";
+          } else if (d.state === "suspect") {
+            return "rgba(218, 165, 32, 0.2)";
+          } else if (d.state === "stage2") {
+            return "rgba(250, 128, 114, 0.2)";
+          } else {
+            return "rgba(255, 0, 0, 0.2)";
+          }
+        })
   };
 })();
