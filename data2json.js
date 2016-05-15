@@ -2,8 +2,9 @@ var os = require("os"),
     rw = require("rw").dash,
     dsv = require("d3-dsv");
 
-function transform(d) {
+function transform(d, i) {
   return {
+    id: i,
     state: d.State,
     skew: +d["Skew.x"],
     kurt: +d["Kurt.x"],

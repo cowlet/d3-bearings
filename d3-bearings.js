@@ -51,14 +51,26 @@
       "stage2": "rgba(250, 128, 114, 0.2)"
     };
 
-    var circle = vis.selectAll("circle")
-      .data(data)
-      .enter().append("circle")
-        .attr("cx", function(d) { return xscale(d.bpfi); })
-        .attr("cy", function(d) { return yscale(d.bpfo); })
-        .attr("r", radius)
-        .style("fill", function(d) { return colours[d.state] || defaultColour; })
-      .append("svg:title")
-        .text(function(d) { return d.state });
+    function render(xs) {
+      var circle = vis.selectAll("circle")
+        .data(xs, function(d) { return d.id; });
+
+      circle.enter().append("circle")
+          .attr("cx", function(d) { return xscale(d.bpfi); })
+          .attr("cy", function(d) { return yscale(d.bpfo); })
+          .attr("r", radius)
+          .style("fill", function(d) { return colours[d.state] || defaultColour; })
+          .append("svg:title")
+            .text(function(d) { return d.state });
+      circle.exit().remove();
+    };
+
+    render(data);
+
+    document.getElementById("delete_input").onchange = function() {
+      var filtered = this.checked ? data.slice(0, 100) : data;
+
+      render(filtered);
+    };
   };
 })();
