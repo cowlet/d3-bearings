@@ -6,7 +6,6 @@
     visualise(json);
   });
 
-
   function visualise(data) {
     var margin = {top: 20, right: 30, bottom: 30, left: 40};
     var width = 580 - margin.left - margin.right;
@@ -44,25 +43,21 @@
       .attr("transform", "translate(" + margin.left + ", " + margin.top + ")")
       .call(yaxis);
 
+    var defaultColour = "rgba(255, 0, 0, 0.2)";
+    var colours = {
+      "early": "rgba(0, 255, 0, 0.2)",
+      "normal": "rgba(0, 0, 255, 0.2)",
+      "suspect": "rgba(218, 165, 32, 0.2)",
+      "stage2": "rgba(250, 128, 114, 0.2)"
+    };
+
     var circle = vis.selectAll("circle")
       .data(data)
       .enter().append("circle")
         .attr("cx", function(d) { return xscale(d.bpfi); })
         .attr("cy", function(d) { return yscale(d.bpfo); })
         .attr("r", radius)
-        .style("fill", function(d) {
-          if (d.state === "early") {
-            return "rgba(0, 255, 0, 0.2)";
-          } else if (d.state === "normal") {
-            return "rgba(0, 0, 255, 0.2)";
-          } else if (d.state === "suspect") {
-            return "rgba(218, 165, 32, 0.2)";
-          } else if (d.state === "stage2") {
-            return "rgba(250, 128, 114, 0.2)";
-          } else {
-            return "rgba(255, 0, 0, 0.2)";
-          }
-        })
+        .style("fill", function(d) { return colours[d.state] || defaultColour; })
       .append("svg:title")
         .text(function(d) { return d.state });
   };
