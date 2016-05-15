@@ -63,5 +63,7 @@
             return "rgba(255, 0, 0, 0.2)";
           }
         })
+      .append("svg:title")
+        .text(function(d) { return d.state });
   };
 })();
