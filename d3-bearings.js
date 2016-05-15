@@ -1,26 +1,16 @@
 (function () {
-  var circle = d3.selectAll("circle");
+  var data = [1, 3, 6, 18, 23];
+  var width = 720;
+  var height = 128;
 
-  var min = 5;
-  var max = 15;
-  var delta = 0.1;
+  var vis = d3.select(".bearings")
+    .attr("width", width)
+    .attr("height", height);
 
-  function step() {
-    var r = +circle.attr("r");
-
-    r = r + delta;
-
-    if (r > max) {
-      r = max;
-      delta = delta * -1;
-    } else if (r < min) {
-      r = min;
-      delta = delta * -1;
-    }
-
-    circle.attr("r", r);
-    requestAnimationFrame(step);
-  }
-
-  requestAnimationFrame(step);
+  var circle = vis.selectAll("circle")
+    .data(data)
+    .enter().append("circle")
+      .attr("cx", function(d, i) { return 40 * (i + 1); })
+      .attr("cy", 60)
+      .attr("r", function(d) { return d; });
 })();
