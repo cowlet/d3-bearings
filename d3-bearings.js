@@ -8,8 +8,9 @@
 
 
   function visualise(data) {
-    var width = 720;
-    var height = 720;
+    var width = 580;
+    var height = 580;
+    var radius = 4;
 
     var vis = d3.select(".bearings")
       .attr("width", width)
@@ -20,12 +21,12 @@
 
     var xscale = d3.scaleLinear()
       .domain([d3.min(bpfi), d3.max(bpfi)])
-      .range([0, width])
+      .range([0 + radius, width + 2 * radius])
       .nice();
 
     var yscale = d3.scaleLinear()
       .domain([d3.min(bpfo), d3.max(bpfo)])
-      .range([height, 0])
+      .range([height - 2 * radius, 0 - radius])
       .nice();
 
     var circle = vis.selectAll("circle")
@@ -33,6 +34,6 @@
       .enter().append("circle")
         .attr("cx", function(d) { return xscale(d.bpfi); })
         .attr("cy", function(d) { return yscale(d.bpfo); })
-        .attr("r", 5);
+        .attr("r", radius);
   };
 })();
