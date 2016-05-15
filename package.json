@@ -7,11 +7,13 @@
     "d3": "^4.0.0-alpha.40"
   },
   "devDependencies": {
+    "http-server": "^0.9.0",
     "qunitjs": "~1.14.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "convert": "node data2json.js data/data.csv > data/data.json",
+    "start": "./node_modules/.bin/http-server"
   },
   "repository": {
     "type": "git",
