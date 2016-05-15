@@ -1,6 +1,12 @@
 * {
   box-sizing: border-box;
-  font-family: helvetica;
+}
+
+body {
+  font: 16px helvetica;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px;
 }
 
 .axis line {
@@ -10,4 +16,41 @@
 .axis path {
   fill: none;
   stroke: #000;
+}
+
+svg {
+  width: 100%;
+  max-height: 530px;
+}
+
+.controls {
+  margin: 20px 0;
+}
+
+label {
+  cursor: pointer;
+}
+
+label input {
+  display: none;
+}
+
+label span {
+  border: 1px solid #ddd;
+  color: #999;
+  display: inline-block;
+  margin: 2px 0;
+  padding: 0.5em 1em;
+}
+
+label input:checked + span {
+  background: #efe;
+  border-color: #0d0;
+  color: #000;
+}
+
+@media screen and (max-width: 480px) {
+  .controls {
+    font-size: 10.5px;
+  }
 }

@@ -1,20 +1,39 @@
 <html>
   <head>
     <title>D3 Bearings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="app.css">
   </head>
   <body>
     <h1>Bearings!</h1>
 
-    <svg class="bearings">
-    </svg>
+    <p>Plotting one point per sample, comparing BPFO (Y) vs BPFI (X). These values are ball pass frequency for the outer and inner race of a bearing.</p>
 
-    <div class="control">
+    <div class="controls">
       <label>
-        Delete?
-        <input type="checkbox" name="delete" id="delete_input">
+        <input type="checkbox" name="early" checked>
+        <span>Early</span>
+      </label>
+      <label>
+        <input type="checkbox" name="normal" checked>
+        <span>Normal</span>
+      </label>
+      <label>
+        <input type="checkbox" name="suspect" checked>
+        <span>Suspect</span>
+      </label>
+      <label>
+        <input type="checkbox" name="failure.b1 failure.b2 failure.inner failure.roller" checked>
+        <span>Failure</span>
+      </label>
+      <label>
+        <input type="checkbox" name="stage2" checked>
+        <span>Stage 2</span>
       </label>
     </div>
+
+    <svg class="bearings" viewBox="0 0 100 100">
+    </svg>
 
     <script src="node_modules/d3/build/d3.js"></script>
     <script src="d3-bearings.js"></script>

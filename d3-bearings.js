@@ -8,13 +8,14 @@
 
   function visualise(data) {
     var margin = {top: 20, right: 30, bottom: 30, left: 40};
-    var width = 580 - margin.left - margin.right;
-    var height = 580 - margin.top - margin.bottom;
+    var width = 780 - margin.left - margin.right;
+    var height = 480 - margin.top - margin.bottom;
     var radius = 4;
+    var totalWidth = width + margin.left + margin.right;
+    var totalHeight = height + margin.top + margin.bottom;
 
     var svg = d3.select(".bearings")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom);
+        .attr("viewBox", "0 0 " + totalWidth + " " + totalHeight);
     var vis = svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -67,10 +68,34 @@
 
     render(data);
 
-    document.getElementById("delete_input").onchange = function() {
-      var filtered = this.checked ? data.slice(0, 100) : data;
+    var inputs = document.querySelectorAll(".controls input");
+
+    function checkboxHandler() {
+      var i;
+      var checked = [];
+
+      for (i = 0; i < inputs.length; i++) {
+        if (inputs[i].checked) {
+          checked = checked.concat(inputs[i].name.split(" "));
+          checked.push(inputs[i].name);
+        }
+      }
+
+      var filtered = data.filter(function(d) {
+        return checked.includes(d.state);
+      });
 
       render(filtered);
     };
+
+    (function() {
+      var i;
+
+      for (i = 0; i < inputs.length; i++) {
+        inputs[i].onchange = checkboxHandler;
+      }
+    })();
+
+    checkboxHandler();
   };
 })();
